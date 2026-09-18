@@ -11,12 +11,12 @@ def main():
     nombre_cliente, nombre_producto1, nombre_producto2, precio_producto1, precio_producto2, cantidad_producto1, cantidad_producto2 = leer_datosVentas(mensaje)
 
     #Invacar a calcular_total()
-    calcular_total(cantidad, precio, porcentaje, impuesto)
-    cantidad= int(input("Digite la cantidad comprada: "))
     porcentaje = float(input("Digite el porcentaje de descuento: "))
-    total, subtotal, descuento, iva = calcular_total(cantidad, precio, porcentaje, impuesto)
+    porcentaje = porcentaje / 100
+    total, subtotal, descuento, iva = calcular_total(precio_producto1, precio_producto2, cantidad_producto1, cantidad_producto2, porcentaje, impuesto)
+  
 
-def calcular_total(precio_producto1, precio_producto2, cantidad_producto1, cantidad_producto2, porcentaje, impuesto, subtotal, descuento):
+def calcular_total(precio_producto1, precio_producto2, cantidad_producto1, cantidad_producto2, porcentaje, impuesto):
 
     # Subtotal
     subtotal_producto1, subtotal_producto2 = calcular_subtotal(cantidad_producto1, cantidad_producto2, precio_producto1, precio_producto2)
@@ -63,7 +63,18 @@ def calcular_total_productos(subtotal_producto1, subtotal_producto2):
     return subtotal
 
 def calcular_promedio_precio(precio_producto1, precio_producto2):
-    promedio_precio = (precio_producto1, precio_producto2) / 2
+    promedio_precio = (precio_producto1 + precio_producto2) / 2
     return promedio_precio
 
+def mostrar_factura (nombre_cliente, nombre_producto1, nombre_producto2, precio_producto1, precio_producto2, cantidad_producto1, cantidad_producto2, subtotal, descuento, iva, total, promedio_precio):
+    print("************** FACTURA **************")
+    print(f"Nombre del cliente: {nombre_cliente}")
+    print("Productos: ")
+    print(f"{nombre_producto1} x{cantidad_producto1}... {precio_producto1}")
+    print(f"{nombre_producto2} x{cantidad_producto2}... {precio_producto2}")
+    print(f"Subtotal: {subtotal}")
+    print(f"Descuento: {descuento}")
+    print(f"IVA: {iva}")
+    print(f"Promedio de los precios: {promedio_precio}")
+    print(f"Total: {total}")
 main()

@@ -7,8 +7,8 @@ def main():
     precio = subtotal = descuento = iva = total = 0.0
     impuesto = 0.15
 
-    #Invocar a leer_cliente()
-    nombre = leer_cliente(mensaje)
+    #Invocar a leer_datosVentas()
+    nombre = leer_datosVentas(mensaje)
 
     #Invacar a calcular_total()
     calcular_total(cantidad, precio, porcentaje, impuesto)
@@ -22,9 +22,10 @@ def calcular_total(cantidad, precio, porcentaje, impuesto):
     iva = calcular_iva(subtotal, impuesto)
     total = subtotal - descuento + iva
 
-def calcular_subtotal (cantidad, precio):
-    subtotal = cantidad * precio 
-    return subtotal
+def calcular_subtotal (precio_producto1, precio_producto2, cantidad_producto1, cantidad_producto2):
+    subtotal_producto1 = cantidad_producto1 * precio_producto1 
+    subtotal_producto2 = cantidad_producto2 * precio_producto2
+    return subtotal_producto1, subtotal_producto2
 
 def calcular_descuento(subtotal, porcentaje):
     descuento = subtotal * porcentaje
@@ -34,10 +35,17 @@ def calcular_iva(subtotal, impuesto):
     iva = subtotal * impuesto 
     return iva
 
-def leer_cliente(msj):
+def leer_datosVentas(msj):
     print(msj)
     print("*"*40)
-    nombre = input("Digite el nombre del cliente: ")
-    return nombre
+    nombre_cliente = input("Digite el nombre del cliente: ")
+    nombre_producto1 = input("Ingrese el nombre del producto #1: ")
+    precio_producto1 = float(input("Ingrese el precio del producto #1"))
+    cantidad_producto1 = float(input("Ingrese la cantidad del producto #1"))
+    nombre_producto2 = input("Ingrese el nombre del producto #2: ")
+    precio_producto2 = float(input("Ingrese el precio del producto #2"))
+    cantidad_producto2 = float(input("Ingrese la cantidad del producto #2"))
+
+    return nombre_cliente, nombre_producto1, nombre_producto2, precio_producto1, precio_producto2, cantidad_producto1, cantidad_producto2
 
 main()

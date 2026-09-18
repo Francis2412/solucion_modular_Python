@@ -8,7 +8,7 @@ def main():
     impuesto = 0.15
 
     #Invocar a leer_datosVentas()
-    nombre = leer_datosVentas(mensaje)
+    nombre_cliente, nombre_producto1, nombre_producto2, precio_producto1, precio_producto2, cantidad_producto1, cantidad_producto2 = leer_datosVentas(mensaje)
 
     #Invacar a calcular_total()
     calcular_total(cantidad, precio, porcentaje, impuesto)
@@ -16,13 +16,23 @@ def main():
     porcentaje = float(input("Digite el porcentaje de descuento: "))
     total, subtotal, descuento, iva = calcular_total(cantidad, precio, porcentaje, impuesto)
 
-def calcular_total(cantidad, precio, porcentaje, impuesto):
-    subtotal = calcular_subtotal(cantidad, precio)
+def calcular_total(precio_producto1, precio_producto2, cantidad_producto1, cantidad_producto2, porcentaje, impuesto, subtotal, descuento):
+
+    # Subtotal
+    subtotal_producto1, subtotal_producto2 = calcular_subtotal(cantidad_producto1, cantidad_producto2, precio_producto1, precio_producto2)
+
+    #Subtotal Acumulado 
+    subtotal = calcular_total_productos (subtotal_producto1, subtotal_producto2)
+
+    # Descuento
     descuento = calcular_descuento(subtotal, porcentaje)
+
+    #IVA
     iva = calcular_iva(subtotal, impuesto)
     total = subtotal - descuento + iva
+    return total, subtotal, descuento, iva
 
-def calcular_subtotal (precio_producto1, precio_producto2, cantidad_producto1, cantidad_producto2):
+def calcular_subtotal (cantidad_producto1, cantidad_producto2, precio_producto1, precio_producto2):
     subtotal_producto1 = cantidad_producto1 * precio_producto1 
     subtotal_producto2 = cantidad_producto2 * precio_producto2
     return subtotal_producto1, subtotal_producto2
@@ -47,5 +57,13 @@ def leer_datosVentas(msj):
     cantidad_producto2 = float(input("Ingrese la cantidad del producto #2"))
 
     return nombre_cliente, nombre_producto1, nombre_producto2, precio_producto1, precio_producto2, cantidad_producto1, cantidad_producto2
+
+def calcular_total_productos(subtotal_producto1, subtotal_producto2):
+    subtotal = subtotal_producto1 + subtotal_producto2 
+    return subtotal
+
+def calcular_promedio_precio(precio_producto1, precio_producto2):
+    promedio_precio = (precio_producto1, precio_producto2) / 2
+    return promedio_precio
 
 main()

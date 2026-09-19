@@ -80,15 +80,15 @@ def calcular_promedio_precio(precio_producto1, precio_producto2):
 def mostrar_factura (nombre_cliente, nombre_producto1, nombre_producto2, precio_producto1, precio_producto2, cantidad_producto1, cantidad_producto2, subtotal, iva, total, promedio_precio, descuento_producto1, descuento_producto2):
     os.system("cls")
 
-    print("********** FACTURA **********")
+    print("****************** FACTURA ******************")
     print(f"Nombre del cliente: {nombre_cliente}")
     print("Productos: ")
   
     print(f"{nombre_producto1} x{cantidad_producto1}... {precio_producto1}")
-    print(f"Descuento del producto: {descuento_producto1}") 
+    print(f"Descuento aplicado en el producto #1: {descuento_producto1}") 
     
     print(f"{nombre_producto2} x{cantidad_producto2}... {precio_producto2}")
-    print(f"Descuento del producto: {descuento_producto2}")
+    print(f"Descuento aplicado en el producto #2: {descuento_producto2}")
    
     print(f"Subtotal: {subtotal}")
     print(f"IVA: {iva}")
